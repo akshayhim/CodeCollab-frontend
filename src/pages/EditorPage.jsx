@@ -1,38 +1,49 @@
 import { useState, useRef, useEffect } from "react";
 import Client from "../components/Client";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, Navigate } from "react-router-dom";
 import Editor from "../components/Editor";
 import { initSocket } from "../socket";
 import { useSelector } from "react-redux";
+import { toast, Toaster } from "react-hot-toast";
 
 const EditorPage = () => {
   const user = useSelector((state) => state.user);
   const { roomId } = useParams();
   const socketRef = useRef(null);
+  const reactNavigator = useNavigate();
 
   useEffect(() => {
     const init = async () => {
       try {
         socketRef.current = await initSocket();
-        console.log("Socket connected successfully");
+        // console.log("Socket connected successfully");
+        toast.success("Socket connection established", {
+          toastId: "socket-success",
+        });
 
         // Emit the "join" event only after the socket connection is established
-        // socketRef.current.emit("join", {
-        //   roomId,
-        //   username: user?.username,
-        // });
+        socketRef.current.emit("join", {
+          roomId,
+          username: user?.user.username,
+        });
       } catch (error) {
         console.error("Error connecting to socket:", error);
+        toast.error("Socket Connection Failed");
+        reactNavigator("/");
       }
     };
 
     init();
-  }, [roomId, user]);
+  }, [roomId, user, reactNavigator]);
 
   const [clients, setClients] = useState([
     { socketId: 1, username: "John Doe" },
     { socketId: 2, username: "test test" },
   ]);
+
+  if (!user) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="flex flex-row">
@@ -60,6 +71,7 @@ const EditorPage = () => {
       <div className="flex-grow overflow-hidden">
         <Editor />
       </div>
+      <Toaster />
     </div>
   );
 };
