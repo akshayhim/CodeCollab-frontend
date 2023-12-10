@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux"; // Import useDispatch and useSelector hooks
-import { Navigate } from "react-router-dom";  // Import useRouter hook
+import { useDispatch } from "react-redux"; // Import useDispatch and useSelector hooks
+// import { Navigate } from "react-router-dom"; // Import useRouter hook
 // import { login, saveToken } from "../utils/auth";
 import { loginUser } from "../../redux/actions/userActions"; // Import loginUser action creator
-
+// import { jwtDecode } from "jwt-decode";
+import { getToken } from "../utils/auth";
+//JWTTTTTTTT LIBRARYYYYYYYYYYYYYYYY
 const Login = () => {
   const [credentials, setCredentials] = useState({
     email: "",
@@ -11,7 +13,9 @@ const Login = () => {
   });
   const [error, setError] = useState(null);
   const dispatch = useDispatch(); // Get a reference to the dispatch function
-  const user = useSelector((state) => state.user); // Get a reference to the user state // Get a reference to the router object
+  const jwtToken = getToken();
+  console.log(jwtToken); // Get a reference to the user state // Get a reference to the router object
+  // const decoded = jwtDecode(jwtToken);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,10 +28,10 @@ const Login = () => {
     }
   };
 
-  if (user) {
-    console.log("User logged in: ", user.username);
-    <Navigate to="/" />
-  }
+  // if (decoded) {
+  //   console.log("User logged in: ", decoded.username);
+  //   <Navigate to="/" />;
+  // }
 
   return (
     <div>

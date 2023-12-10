@@ -1,4 +1,5 @@
 // import React from "react";
+import { Toaster } from "react-hot-toast";
 import Login from "../components/Login";
 import { Link } from "react-router-dom";
 
@@ -13,6 +14,7 @@ const LoginPage = () => {
           {"Don't have an account? "}
           <span className="underline">Sign Up</span>
         </Link>
+        <Toaster />
       </div>
     </>
   );

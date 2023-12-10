@@ -6,10 +6,21 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import About from "./pages/About";
 import Navbar from "./components/Navbar";
-import { useSelector } from "react-redux"; // Import useSelector hook
+import { useDispatch, useSelector } from "react-redux"; // Import useSelector hook
 import { Navigate } from "react-router-dom"; // Import Navigate component
+import { useEffect } from "react";
+import { setUser } from "../redux/actions/userActions";
+import { getToken } from "./utils/auth";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const token = getToken();
+
+    if (token) {
+      dispatch(setUser(token));
+    }
+  }, [dispatch]);
   return (
     <>
       <BrowserRouter>

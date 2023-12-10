@@ -1,18 +1,15 @@
 import { register, login, removeToken } from "../../src/utils/auth"; // Import removeToken function
 
-export const setUser = (user) => ({
+export const setUser = (token) => ({
   type: "SET_USER",
-  payload: user,
+  payload: token,
 });
 
-// Modify logout action creator to return a function
 export const logout = () => (dispatch) => {
-  // Dispatch logout action with null payload
   dispatch({
     type: "LOG_OUT",
     payload: null,
   });
-  // Remove token from local storage
   removeToken();
 };
 

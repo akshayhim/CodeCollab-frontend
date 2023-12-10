@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"; // Import useDispatch and useSelector hooks
-import { Navigate } from "react-router-dom"; // Import useRouter hook
+import { Navigate, json } from "react-router-dom"; // Import useRouter hook
 // import { register, saveToken } from "../utils/auth";
 import { registerUser } from "../../redux/actions/userActions"; // Import registerUser action creator
+import { jwtDecode } from "jwt-decode";
+import { getToken } from "../utils/auth";
 
 const Registration = () => {
   const [userData, setUserData] = useState({
@@ -12,8 +14,10 @@ const Registration = () => {
   });
   const [error, setError] = useState(null);
   const dispatch = useDispatch(); // Get a reference to the dispatch function
-  const user = useSelector((state) => state.user); // Get a reference to the user state
- // Get a reference to the router object
+  const jwtToken = getToken();
+  console.log(jwtToken); // Get a reference to the user state
+  // const decoded = jwtDecode(jwtToken);
+  // Get a reference to the router object
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,10 +30,10 @@ const Registration = () => {
     }
   };
 
-  if (user) {
-    console.log("User logged in: ", user.username);
-    <Navigate to="/" />
-  }
+  // if (decoded) {
+  //   console.log("User logged in: ", decoded.username);
+  //   <Navigate to="/" />
+  // }
 
   return (
     <div>

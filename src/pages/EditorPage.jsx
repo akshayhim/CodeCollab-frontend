@@ -3,14 +3,18 @@ import Client from "../components/Client";
 import { useNavigate, useParams, Navigate } from "react-router-dom";
 import Editor from "../components/Editor";
 import { initSocket } from "../socket";
-import { useSelector } from "react-redux";
 import { toast, Toaster } from "react-hot-toast";
+import { jwtDecode } from "jwt-decode";
+import { getToken } from "../utils/auth";
 
 const EditorPage = () => {
-  const user = useSelector((state) => state.user);
+  const token = getToken();
+  console.log(token);
+  const decoded = jwtDecode(token);
   const { roomId } = useParams();
   const socketRef = useRef(null);
   const reactNavigator = useNavigate();
+  const [clients, setClients] = useState([]);
 
   useEffect(() => {
     const init = async () => {
@@ -24,24 +28,27 @@ const EditorPage = () => {
         // Emit the "join" event only after the socket connection is established
         socketRef.current.emit("join", {
           roomId,
-          username: user?.user.username,
+          username: decoded.username,
         });
       } catch (error) {
         console.error("Error connecting to socket:", error);
+        console.log({ decoded });
         toast.error("Socket Connection Failed");
+
         reactNavigator("/");
       }
+
+      socketRef.current.on("join", ({ clients, username, socketId }) => {
+        if (username !== decoded.username) {
+          toast.success(`${username} joined the room.`);
+        }
+        setClients(clients);
+      });
     };
-
     init();
-  }, [roomId, user, reactNavigator]);
+  }, [roomId, reactNavigator]);
 
-  const [clients, setClients] = useState([
-    { socketId: 1, username: "John Doe" },
-    { socketId: 2, username: "test test" },
-  ]);
-
-  if (!user) {
+  if (!decoded) {
     return <Navigate to="/" />;
   }
 

@@ -18,6 +18,7 @@
     "axios": "^1.5.1",
     "codemirror": "^5.65.16",
     "core-js": "^2.6.9",
+    "jwt-decode": "^4.0.0",
     "nanoid": "^5.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
