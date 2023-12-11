@@ -30,7 +30,7 @@ const Home = () => {
 
   const createRoom = () => {
     if (token) {
-      const roomId = nanoid(7);
+      const roomId = nanoid(4);
       navigate(`/editor/${roomId}`);
     } else {
       toast.error("You need to Login First");

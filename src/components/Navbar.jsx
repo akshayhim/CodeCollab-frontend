@@ -5,6 +5,7 @@ import { CiMenuFries } from "react-icons/ci";
 import { useSelector, useDispatch } from "react-redux"; // Import useSelector and useDispatch hooks
 import { logout } from "../../redux/actions/userActions"; // Import logout action creator
 import { Navigate } from "react-router-dom"; // Import useRouter hook
+import { toast, Toaster } from "react-hot-toast";
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
@@ -32,9 +33,10 @@ const Navbar = () => {
             <Link
               onClick={() => {
                 // Call logout function
+                <Navigate to="/" />;
+                logoutToast();
                 dispatch(logout());
                 // Redirect to home page
-                <Navigate to="/" />;
               }}
               className="unstable-viewTransition"
             >
@@ -54,6 +56,15 @@ const Navbar = () => {
       </div>
     </>
   );
+
+  const logoutToast = () => {
+    // Show the loading toast
+    toast.success("Successfully Logged Out");
+
+    // Set a timeout to update the toast after 4 seconds
+    // 4000 milliseconds = 4 seconds
+  };
+
   return (
     <nav>
       <div className="border-solid border-stone-900 border-b-2 h-10vh flex justify-between z-50 text-black lg:py-5 px-5 py-4">
@@ -81,8 +92,8 @@ const Navbar = () => {
                   onClick={() => {
                     // Call logout function
                     dispatch(logout());
-                    // Redirect to home page
-                    router.push("/");
+                    <Navigate to="/" />;
+                    logoutToast();
                   }}
                   className="unstable-viewTransition"
                 >
@@ -106,6 +117,7 @@ const Navbar = () => {
         <button className="block md:hidden translation" onClick={handleClick}>
           {click ? <FaTimes /> : <CiMenuFries />}
         </button>
+        <Toaster />
       </div>
     </nav>
   );

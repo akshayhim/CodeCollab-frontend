@@ -44,8 +44,22 @@ const EditorPage = () => {
         }
         setClients(clients);
       });
+
+      socketRef.current.on("disconnected", ({ socketId, username }) => {
+        toast(`${username} has left the room`, {
+          icon: "👋",
+        });
+        setClients((prev) => {
+          return prev.filter((client) => client.socketId !== socketId);
+        });
+      });
     };
     init();
+    return () => {
+      socketRef.current.off("joined");
+      socketRef.current.off("disconnected");
+      socketRef.current.disconnect();
+    };
   }, [roomId, reactNavigator]);
 
   if (!decoded) {
@@ -76,7 +90,7 @@ const EditorPage = () => {
       </div>
       {/* Editor Part */}
       <div className="flex-grow overflow-hidden">
-        <Editor />
+        <Editor socketRef={socketRef} roomId={roomId} />
       </div>
       <Toaster />
     </div>
