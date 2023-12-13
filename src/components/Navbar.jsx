@@ -20,10 +20,13 @@ const Navbar = () => {
 
   const content = (
     <>
-      <div className="md:hidden block absolute top-16 w-full left-0 right-0 bg-slate-900 transition">
-        <ul className="text-center text-[17px] font-sans p-20 font-medium">
+      <div className="md:hidden block absolute top-16 w-full left-0 right-0 bg-white transition">
+        <ul
+          className="text-center text-[17px] font-sans font-medium"
+          onClick={handleClick}
+        >
           <Link to="/about" unstable_viewTransition>
-            <li className="my-4 py-4 border-b border-slate-800 hover:bg-slate-800 hover:rounded">
+            <li className="my-2 py-4 border-b border-slate-800 hover:bg-slate-800 hover:rounded">
               About
             </li>
           </Link>
@@ -40,14 +43,14 @@ const Navbar = () => {
               }}
               className="unstable-viewTransition"
             >
-              <li className="my-4 py-4 border-b border-slate-800 hover:bg-slate-800 hover:rounded">
+              <li className="my-2 py-4 border-b border-slate-800 hover:bg-slate-800 hover:rounded">
                 Log Out
               </li>
             </Link>
           ) : (
             // If not, show "Login/Register" option
             <Link to="/login" unstable_viewTransition>
-              <li className="my-4 py-4 border-b border-slate-800 hover:bg-slate-800 hover:rounded">
+              <li className="my-2 py-4 border-b border-slate-800 hover:bg-slate-800 hover:rounded">
                 Login/Register
               </li>
             </Link>
@@ -67,7 +70,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="border-solid border-stone-900 border-b-2 h-10vh flex justify-between z-50 text-black lg:py-5 px-5 py-4">
+      <div className="border-solid border-stone-900 border-b-2 h-10vh flex justify-between z-50 text-black lg:py-5 px-5 py-4 xl:bg-amber-600">
         <div className="flex items-center flex-1 mb-2">
           <Link to="/" unstable_viewTransition>
             <img
