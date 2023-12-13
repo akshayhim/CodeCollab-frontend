@@ -70,21 +70,21 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="border-solid border-stone-900 border-b-2 h-10vh flex justify-between z-50 text-black lg:py-5 px-5 py-4 xl:bg-amber-600">
+      <div className="border-solid border-stone-900 border-b-2 h-10vh flex justify-between z-50 text-black lg:py-5 px-5 py-4">
         <div className="flex items-center flex-1 mb-2">
           <Link to="/" unstable_viewTransition>
             <img
               src="/logo-no-background.svg"
               alt="Logo"
-              className="h-6 w-auto"
+              className="h-8 w-auto"
             />
           </Link>
         </div>
         <div className="lg:flex md:flex lg: flex-1 items center justify-end font-normal hidden">
           <div className="flex-10">
-            <ul className="flex gap-8 mr-16 text-[15px] font-sans font-medium">
+            <ul className="flex gap-8 mr-16 text-[20px] font-sans font-medium">
               <Link to="/about" className="unstable-viewTransition">
-                <li className="hover:text-fuchsia-600 transition hover:border-b-2 border-red rounded-sm border-slate-900 hover:border-fuchsia-600 cursor-pointer">
+                <li className="hover:text-[#e8504e] transition hover:border-b-2 border-red rounded-sm border-slate-900 hover:border-[#e8504e] cursor-pointer">
                   ABOUT
                 </li>
               </Link>
@@ -100,14 +100,14 @@ const Navbar = () => {
                   }}
                   className="unstable-viewTransition"
                 >
-                  <li className="hover:text-fuchsia-600 transition hover:border-b-2 border-red rounded-sm border-slate-900 hover:border-fuchsia-600 cursor-pointer">
+                  <li className="hover:text-[#e8504e] transition hover:border-b-2 border-red rounded-sm border-slate-900 hover:border-[#e8504e] cursor-pointer">
                     LOG OUT
                   </li>
                 </Link>
               ) : (
                 // If not, show "Login/Register" option
                 <Link to="/login" className="unstable-viewTransition">
-                  <li className="hover:text-fuchsia-600 transition hover:border-b-2 border-red rounded-sm border-slate-900 hover:border-fuchsia-600 cursor-pointer">
+                  <li className="hover:text-[#e8504e] transition hover:border-b-2 border-red rounded-sm border-slate-900 hover:border-[#e8504e] cursor-pointer">
                     LOGIN/REGISTER
                   </li>
                 </Link>
