@@ -1,6 +1,7 @@
 // auth.js
 
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const API_URL = "http://localhost:5000/api"; // Replace with your backend API URL
 
@@ -10,7 +11,8 @@ export const register = async (userData) => {
     saveToken(response.data.token);
     return response.data;
   } catch (error) {
-    throw error.response.data;
+    console.log(error.response.data);
+    toast.error("Invalid, check console log");
   }
 };
 
@@ -20,7 +22,7 @@ export const login = async (credentials) => {
     saveToken(response.data.token);
     return response.data;
   } catch (error) {
-    throw error.response.data;
+    toast.error("Invalid Email/Password");
   }
 };
 

@@ -91,7 +91,7 @@ const Home = () => {
           />
         </div>
       </div>
-      <h3 className="ml-6 font-sans font-semibold text-2xl tracking-wide mr-6 relative top-8 mb-10 mt-0">
+      <h3 className="ml-6 font-sans font-semibold text-xl lg:text-2xl tracking-wide mr-6 relative top-8 mb-10 mt-0">
         <span className="">Here&apos;s what our users have to say</span> :
       </h3>
 

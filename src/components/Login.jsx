@@ -1,45 +1,40 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux"; // Import useDispatch and useSelector hooks
-// import { Navigate } from "react-router-dom"; // Import useRouter hook
-// import { login, saveToken } from "../utils/auth";
-import { loginUser } from "../../redux/actions/userActions"; // Import loginUser action creator
-// import { jwtDecode } from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/actions/userActions";
 import { getToken } from "../utils/auth";
-//JWTTTTTTTT LIBRARYYYYYYYYYYYYYYYY
+import toast, { Toaster } from "react-hot-toast";
+
 const Login = () => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
   const [error, setError] = useState(null);
-  const dispatch = useDispatch(); // Get a reference to the dispatch function
+  const dispatch = useDispatch();
   const jwtToken = getToken();
-  console.log(jwtToken); // Get a reference to the user state // Get a reference to the router object
-  // const decoded = jwtDecode(jwtToken);
+  console.log(jwtToken);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(loginUser(credentials)); // Dispatch loginUser action with credentials as argument
-      // saveToken(response.token);
-      // router.push("/dashboard"); // Redirect to dashboard after successful login
+      dispatch(loginUser(credentials));
     } catch (error) {
       setError(error.message || "Invalid email or password.");
+      toast.error("Invalid email or password");
     }
   };
 
-  // if (decoded) {
-  //   console.log("User logged in: ", decoded.username);
-  //   <Navigate to="/" />;
-  // }
-
   return (
-    <div>
-      <h1>Login</h1>
-      {error && <div className="error">{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
+    <div className="flex justify-center items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-xl rounded-md p-8 max-w-sm"
+      >
+        {error && <div className="text-red-500 mb-4">{error}</div>}
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Email:
+          </label>
           <input
             type="email"
             value={credentials.email}
@@ -47,10 +42,13 @@ const Login = () => {
               setCredentials({ ...credentials, email: e.target.value })
             }
             required
+            className="border rounded-md w-full py-2 px-3 focus:outline-none focus:border-blue-500 font-sans"
           />
         </div>
-        <div>
-          <label>Password:</label>
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Password:
+          </label>
           <input
             type="password"
             value={credentials.password}
@@ -58,10 +56,17 @@ const Login = () => {
               setCredentials({ ...credentials, password: e.target.value })
             }
             required
+            className="border rounded-md w-full py-2 px-3 focus:outline-none focus:border-blue-500 font-sans"
           />
         </div>
-        <button type="submit">Login</button>
+        <button
+          type="submit"
+          className="bg-red-500 hover:bg-red-600 text-white rounded-md py-2 px-4 focus:outline-none focus:shadow-outline-red"
+        >
+          Login
+        </button>
       </form>
+      <Toaster />
     </div>
   );
 };

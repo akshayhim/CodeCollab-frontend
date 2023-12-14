@@ -3,7 +3,7 @@ import CodeMirror from "codemirror";
 import { useEffect, useRef } from "react";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/lib/codemirror.css";
-import "codemirror/theme/neat.css";
+import "codemirror/theme/elegant.css";
 import "codemirror/addon/edit/closebrackets";
 import "codemirror/addon/edit/closetag";
 
@@ -15,7 +15,7 @@ const Editor = ({ socketRef, roomId, onCodeChange }) => {
         document.getElementById("realtimeEditor"),
         {
           mode: { name: "javascript", json: true },
-          theme: "neat",
+          theme: "elegant",
           autoCloseTags: true,
           autoCloseBrackets: true,
           lineNumbers: true,
@@ -55,3 +55,5 @@ const Editor = ({ socketRef, roomId, onCodeChange }) => {
 };
 
 export default Editor;
+
+// LANGUAGE SUPPORTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
