@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import Client from "../components/Client";
-import { useNavigate, useParams, Navigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Editor from "../components/Editor";
 import { initSocket } from "../socket";
 import { toast, Toaster } from "react-hot-toast";
@@ -79,13 +79,13 @@ const EditorPage = () => {
   };
 
   if (!decoded) {
-    return <Navigate to="/" />;
+    reactNavigator("/");
   }
 
   return (
     <div className="flex flex-row">
       {/* Aside component */}
-      <div className="w-48 bg-gradient-to-b from-white to-red-100 flex flex-col justify-between flex-shrink-0">
+      <div className="w-28 md:w-48 bg-gradient-to-b from-white from-40% to-red-100 to-800% flex flex-col justify-between flex-shrink-0 h-[calc(100vh-4.65rem)] items-center">
         <div className="flex flex-col items-center justify-start px-4 pt-4">
           <h3 className="underline mb-2">Participants</h3>
           {/* Client List */}
@@ -95,7 +95,24 @@ const EditorPage = () => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col items-center justify-end pb-4">
+        {/* mobile buttons */}
+        <div className="flex flex-col items-center justify-start pb-4 md:hidden w-24 ">
+          <button
+            onClick={copyRoomId}
+            className="mb-4 bg-black/[.85] text-white rounded-lg px-4 py-2 font-sans"
+          >
+            Copy Room ID
+          </button>
+          <button
+            onClick={leaveRoom}
+            className="bg-black/[.85] text-white rounded-lg px-6 py-2 font-sans"
+          >
+            Leave Room
+          </button>
+        </div>
+
+        {/* laptop buttons */}
+        <div className="flex-col items-center justify-end pb-4 hidden md:flex">
           <button
             onClick={copyRoomId}
             className="mb-4 bg-black/[.85] text-white rounded-lg px-4 py-2 font-sans"
