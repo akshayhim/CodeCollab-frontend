@@ -58,10 +58,11 @@ const EditorPage = () => {
     };
     init();
     return () => {
+      socketRef.current.disconnect();
       socketRef.current.off("joined");
       socketRef.current.off("disconnected");
-      socketRef.current.disconnect();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const copyRoomId = async () => {
@@ -103,11 +104,11 @@ const EditorPage = () => {
           >
             Copy Room ID
           </button>
-          <a href="codecollab-akshayhim.vercel.app">
+          {/* <a href="codecollab-akshayhim.vercel.app">
             <button className="bg-black/[.85] text-white rounded-lg px-6 py-2 font-sans">
               Leave Room
             </button>
-          </a>
+          </a> */}
         </div>
 
         {/* laptop buttons */}
@@ -118,11 +119,11 @@ const EditorPage = () => {
           >
             Copy Room ID
           </button>
-          <a href="codecollab-akshayhim.vercel.app">
+          {/* <a href="codecollab-akshayhim.vercel.app">
             <button className="bg-black/[.85] text-white rounded-lg px-6 py-2 font-sans">
               Leave Room
             </button>
-          </a>
+          </a> */}
         </div>
       </div>
       {/* Editor Part */}
