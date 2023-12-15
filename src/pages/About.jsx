@@ -19,7 +19,6 @@ export default function Contact() {
             >
               Github Repo
             </a>
-            Github Repo
             {/* </a> */}
           </span>
         </div>

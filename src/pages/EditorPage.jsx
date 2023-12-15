@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import Client from "../components/Client";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, useNavigate  } from "react-router-dom";
 import Editor from "../components/Editor";
 import { initSocket } from "../socket";
 import { toast, Toaster } from "react-hot-toast";
@@ -13,7 +13,7 @@ const EditorPage = () => {
   const decoded = jwtDecode(token);
   const { roomId } = useParams();
   const socketRef = useRef(null);
-  // const reactNavigator = useNavigate();
+  const navigate = useNavigate();
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const EditorPage = () => {
         console.error("Error connecting to socket:", error);
         console.log({ decoded });
         toast.error("Socket Connection Failed");
-        <Navigate to="/" />;
+        navigate("/");
       }
 
       socketRef.current.on("joined", ({ clients, username, socketId }) => {
@@ -74,11 +74,11 @@ const EditorPage = () => {
   };
 
   const leaveRoom = () => {
-    return <Navigate to="/" />;
+    return navigate("/");
   };
 
   if (!decoded) {
-    return <Navigate to="/" />;
+    return navigate("/");
   }
 
   return (
