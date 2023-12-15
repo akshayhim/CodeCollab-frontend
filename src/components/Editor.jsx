@@ -6,6 +6,7 @@ import "codemirror/lib/codemirror.css";
 import "codemirror/theme/elegant.css";
 import "codemirror/addon/edit/closebrackets";
 import "codemirror/addon/edit/closetag";
+import "codemirror/addon/display/placeholder.js";
 
 const Editor = ({ socketRef, roomId, onCodeChange }) => {
   const editorRef = useRef(null);
@@ -19,6 +20,8 @@ const Editor = ({ socketRef, roomId, onCodeChange }) => {
           autoCloseTags: true,
           autoCloseBrackets: true,
           lineNumbers: true,
+          placeholder:
+            "Invite people to this room by sharing the room ID and start coding...",
         }
       );
 
