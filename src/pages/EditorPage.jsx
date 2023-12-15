@@ -35,7 +35,7 @@ const EditorPage = () => {
         console.log({ decoded });
         toast.error("Socket Connection Failed");
 
-        reactNavigator("/");
+        reactNavigator("https://master--venerable-pie-5410c7.netlify.app/");
       }
 
       socketRef.current.on("joined", ({ clients, username, socketId }) => {

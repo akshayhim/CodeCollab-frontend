@@ -11,10 +11,7 @@ export default function Contact() {
         <div>
           Contribute to this project here :{" "}
           <span className="underline">
-            <Link
-              href="https://github.com/akshayhim/CodeCollab-frontend"
-              target="_blank"
-            >
+            <Link href="https://shorturl.at/mtEMZ" target="_blank">
               Github Repo
             </Link>
           </span>
