@@ -6,7 +6,7 @@ import { initSocket } from "../socket";
 import { toast, Toaster } from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
 import { getToken } from "../utils/auth";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const EditorPage = () => {
   const token = getToken();
@@ -103,11 +103,11 @@ const EditorPage = () => {
           >
             Copy Room ID
           </button>
-          <Link to="/" unstable_viewTransition>
+          <a href="codecollab-akshayhim.vercel.app">
             <button className="bg-black/[.85] text-white rounded-lg px-6 py-2 font-sans">
               Leave Room
             </button>
-          </Link>
+          </a>
         </div>
 
         {/* laptop buttons */}
@@ -118,11 +118,11 @@ const EditorPage = () => {
           >
             Copy Room ID
           </button>
-          <Link to="/" unstable_viewTransition>
+          <a href="codecollab-akshayhim.vercel.app">
             <button className="bg-black/[.85] text-white rounded-lg px-6 py-2 font-sans">
               Leave Room
             </button>
-          </Link>
+          </a>
         </div>
       </div>
       {/* Editor Part */}
