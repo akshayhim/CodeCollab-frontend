@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import Client from "../components/Client";
-import { useNavigate, useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import Editor from "../components/Editor";
 import { initSocket } from "../socket";
 import { toast, Toaster } from "react-hot-toast";
@@ -13,7 +13,7 @@ const EditorPage = () => {
   const decoded = jwtDecode(token);
   const { roomId } = useParams();
   const socketRef = useRef(null);
-  const reactNavigator = useNavigate();
+  // const reactNavigator = useNavigate();
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
@@ -34,8 +34,7 @@ const EditorPage = () => {
         console.error("Error connecting to socket:", error);
         console.log({ decoded });
         toast.error("Socket Connection Failed");
-
-        reactNavigator("https://master--venerable-pie-5410c7.netlify.app/");
+        <Navigate to="/" />;
       }
 
       socketRef.current.on("joined", ({ clients, username, socketId }) => {
@@ -75,7 +74,7 @@ const EditorPage = () => {
   };
 
   const leaveRoom = () => {
-    reactNavigator("/");
+    return <Navigate to="/" />;
   };
 
   if (!decoded) {
