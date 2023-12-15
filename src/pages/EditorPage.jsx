@@ -1,12 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import Client from "../components/Client";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams, Navigate } from "react-router-dom";
 import Editor from "../components/Editor";
 import { initSocket } from "../socket";
 import { toast, Toaster } from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
 import { getToken } from "../utils/auth";
-// import { Link } from "react-router-dom";
 
 const EditorPage = () => {
   const token = getToken();
@@ -14,14 +13,14 @@ const EditorPage = () => {
   const decoded = jwtDecode(token);
   const { roomId } = useParams();
   const socketRef = useRef(null);
-  const navigate = useNavigate();
+  const reactNavigator = useNavigate();
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
     const init = async () => {
       try {
         socketRef.current = await initSocket();
-        console.log("Socket connected successfully");
+        // console.log("Socket connected successfully");
         toast.success("Socket connection established", {
           toastId: "socket-success",
         });
@@ -35,7 +34,8 @@ const EditorPage = () => {
         console.error("Error connecting to socket:", error);
         console.log({ decoded });
         toast.error("Socket Connection Failed");
-        navigate("/");
+
+        reactNavigator("/");
       }
 
       socketRef.current.on("joined", ({ clients, username, socketId }) => {
@@ -58,11 +58,10 @@ const EditorPage = () => {
     };
     init();
     return () => {
-      socketRef.current.disconnect();
       socketRef.current.off("joined");
       socketRef.current.off("disconnected");
+      socketRef.current.disconnect();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const copyRoomId = async () => {
@@ -75,18 +74,18 @@ const EditorPage = () => {
     }
   };
 
-  // const leaveRoom = () => {
-  //   return navigate("/");
-  // };
+  const leaveRoom = () => {
+    reactNavigator("/");
+  };
 
   if (!decoded) {
-    return navigate("/");
+    return <Navigate to="/" />;
   }
 
   return (
     <div className="flex flex-row">
       {/* Aside component */}
-      <div className="w-28 md:w-48 bg-gradient-to-b from-white from-40% to-red-100 to-800% flex flex-col justify-between flex-shrink-0 h-[calc(100vh-4.65rem)] items-center">
+      <div className="w-48 bg-gradient-to-b from-white to-red-100 flex flex-col justify-between flex-shrink-0">
         <div className="flex flex-col items-center justify-start px-4 pt-4">
           <h3 className="underline mb-2">Participants</h3>
           {/* Client List */}
@@ -96,34 +95,19 @@ const EditorPage = () => {
             ))}
           </div>
         </div>
-        {/* mobile buttons */}
-        <div className="flex flex-col items-center justify-start pb-4 md:hidden w-24 ">
+        <div className="flex flex-col items-center justify-end pb-4">
           <button
             onClick={copyRoomId}
             className="mb-4 bg-black/[.85] text-white rounded-lg px-4 py-2 font-sans"
           >
             Copy Room ID
           </button>
-          {/* <a href="codecollab-akshayhim.vercel.app">
-            <button className="bg-black/[.85] text-white rounded-lg px-6 py-2 font-sans">
-              Leave Room
-            </button>
-          </a> */}
-        </div>
-
-        {/* laptop buttons */}
-        <div className="flex-col items-center justify-end pb-4 hidden md:flex">
           <button
-            onClick={copyRoomId}
-            className="mb-4 bg-black/[.85] text-white rounded-lg px-4 py-2 font-sans"
+            onClick={leaveRoom}
+            className="bg-black/[.85] text-white rounded-lg px-6 py-2 font-sans"
           >
-            Copy Room ID
+            Leave Room
           </button>
-          {/* <a href="codecollab-akshayhim.vercel.app">
-            <button className="bg-black/[.85] text-white rounded-lg px-6 py-2 font-sans">
-              Leave Room
-            </button>
-          </a> */}
         </div>
       </div>
       {/* Editor Part */}

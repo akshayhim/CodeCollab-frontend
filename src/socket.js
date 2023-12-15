@@ -8,7 +8,7 @@ export const initSocket = async () => {
     transports: ["websocket"],
   };
   try {
-    const socket = io("https://codecollab-ry3w.onrender.com/api", options);
+    const socket = io("https://codecollab-ry3w.onrender.com", options);
     await new Promise((resolve) => socket.on("connect", resolve));
     console.log("Socket connected successfully");
     return socket;
