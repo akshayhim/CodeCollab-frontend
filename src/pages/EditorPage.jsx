@@ -21,7 +21,7 @@ const EditorPage = () => {
     const init = async () => {
       try {
         socketRef.current = await initSocket();
-        // console.log("Socket connected successfully");
+        console.log("Socket connected successfully");
         toast.success("Socket connection established", {
           toastId: "socket-success",
         });
