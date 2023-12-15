@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import Client from "../components/Client";
-import { useParams, useNavigate  } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Editor from "../components/Editor";
 import { initSocket } from "../socket";
 import { toast, Toaster } from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
 import { getToken } from "../utils/auth";
+import { Link } from "react-router-dom";
 
 const EditorPage = () => {
   const token = getToken();
@@ -73,9 +74,9 @@ const EditorPage = () => {
     }
   };
 
-  const leaveRoom = () => {
-    return navigate("/");
-  };
+  // const leaveRoom = () => {
+  //   return navigate("/");
+  // };
 
   if (!decoded) {
     return navigate("/");
@@ -102,12 +103,11 @@ const EditorPage = () => {
           >
             Copy Room ID
           </button>
-          <button
-            onClick={leaveRoom}
-            className="bg-black/[.85] text-white rounded-lg px-6 py-2 font-sans"
-          >
-            Leave Room
-          </button>
+          <Link to="/" unstable_viewTransition>
+            <button className="bg-black/[.85] text-white rounded-lg px-6 py-2 font-sans">
+              Leave Room
+            </button>
+          </Link>
         </div>
 
         {/* laptop buttons */}
@@ -118,12 +118,11 @@ const EditorPage = () => {
           >
             Copy Room ID
           </button>
-          <button
-            onClick={leaveRoom}
-            className="bg-black/[.85] text-white rounded-lg px-6 py-2 font-sans"
-          >
-            Leave Room
-          </button>
+          <Link to="/" unstable_viewTransition>
+            <button className="bg-black/[.85] text-white rounded-lg px-6 py-2 font-sans">
+              Leave Room
+            </button>
+          </Link>
         </div>
       </div>
       {/* Editor Part */}
