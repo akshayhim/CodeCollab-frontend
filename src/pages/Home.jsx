@@ -173,7 +173,7 @@ const Home = () => {
                 <div className="flex items-center gap-4">
                   <img
                     alt="Women"
-                    src="/test2.jpg"
+                    src="/test2.webp"
                     className="h-14 w-14 rounded-full object-cover"
                   />
 
@@ -232,7 +232,7 @@ const Home = () => {
                 <div className="flex items-center gap-4">
                   <img
                     alt="Man"
-                    src="/test3.jpg"
+                    src="/test3.webp"
                     className="h-14 w-14 rounded-full object-cover"
                   />
 
@@ -378,7 +378,7 @@ const Home = () => {
                 <div className="flex items-center gap-4">
                   <img
                     alt="Women"
-                    src="/test2.jpg"
+                    src="/test2.webp"
                     className="h-14 w-14 rounded-full object-cover"
                   />
 
@@ -437,7 +437,7 @@ const Home = () => {
                 <div className="flex items-center gap-4">
                   <img
                     alt="Man"
-                    src="/test3.jpg"
+                    src="/test3.webp"
                     className="h-14 w-14 rounded-full object-cover"
                   />
 
