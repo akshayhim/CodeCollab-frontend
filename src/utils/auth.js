@@ -2,7 +2,7 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const BACKEND_URL = "http://localhost:5000/api";
+const BACKEND_URL = "https://codecollab-ry3w.onrender.com/api";
 
 export const register = async (userData) => {
   try {
