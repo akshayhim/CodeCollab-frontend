@@ -30,12 +30,11 @@ const Registration = () => {
     }
   };
 
-
   return (
-    <div className="flex justify-center mt-16 h-[calc(100vh-11.16rem)]">
+    <div className="flex justify-center mt-16 ">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-xl rounded-md p-8 max-w-sm"
+        className="bg-white shadow-xl rounded-md p-8 max-w-sm h-[23rem] md:h-96"
       >
         {error && <div className="text-red-500 mb-4">{error}</div>}
         <div className="mb-4">
