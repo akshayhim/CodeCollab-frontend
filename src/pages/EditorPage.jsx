@@ -128,7 +128,7 @@ const EditorPage = () => {
         </div>
       </div>
       {/* Editor Part */}
-      <div className="flex-grow overflow-hidden h-[100vh]">
+      <div className="flex-grow overflow-hidden h-[calc(100vh-4.65rem)]">
         <Editor
           socketRef={socketRef}
           roomId={roomId}
