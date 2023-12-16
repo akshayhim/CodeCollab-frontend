@@ -11,7 +11,7 @@ export const register = async (userData) => {
     return response.data;
   } catch (error) {
     console.log(error.response.data);
-    toast.error("Invalid, check console log");
+    toast.error("Email already associated with an account");
   }
 };
 
