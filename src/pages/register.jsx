@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
   return (
-    <div>
+    <div className="min-h-[calc(100vh-7.16rem)] flex flex-col items-center justify-center bg-gray-100">
       <Registration />
       <Link to="/register" href="#" className="body2">
         {"Don't have an account? "}
